@@ -1,0 +1,16 @@
+---
+- name: playscope varibles (install /unistakll)
+  hosts: all
+  vars:
+   - a: tomcat9
+   - b: present
+   - c: no
+  tasks: 
+   - name: install unistall s/w package
+     apt: 
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"
+
+...
+

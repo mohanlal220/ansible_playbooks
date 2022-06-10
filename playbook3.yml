@@ -1,0 +1,25 @@
+---
+- name: install apachee/edit/check
+  hosts: all
+  tasks:
+   - name: install apache
+     apt:
+      name: apache2 
+      state: present
+   - name: edit tha index.file
+     copy:
+      content: "welcom to mohanlal/n"
+      dest: /var/www/html/index.html
+   - name: restart apache2
+     service:
+      name: apache2
+      state: restarted
+   - name: check tha uri of drvier
+     uri:
+      url: http://172.31.20.18
+      status_code: 200
+   - name: check server
+     uri:
+      url: http://172.31.17.143
+      status_code: 200     
+

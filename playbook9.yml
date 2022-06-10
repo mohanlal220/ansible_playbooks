@@ -1,0 +1,34 @@
+---
+- name: create a setup s/w requored for jenkinsserver
+  hosts: all
+  tasks:
+   - name: install necessary s/w  
+     apt: 
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: openjdk-8-jdk,b: present,c: yes}
+      - {a: git,b: present,c: no}
+      - {a: maven,b: present,c: no}
+   - name: install jenkinks s/w
+     get_url:
+      uri: https://get.jenkins.io/war-stable/2.332.3/jenkins.war
+      dest: /home/ubuntu/ 
+- name: setup on qa and prodseserver
+  hosts: all
+  tasks: 
+   - name: install tomcat and tomcat-admin
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+       - {a: tomcat9,b: present,b: yes}
+       - {a: tomcat9-admin,b: present,c: yes}
+        
+
+        
+
+         
+          

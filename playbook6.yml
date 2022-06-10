@@ -1,0 +1,9 @@
+--- 
+- name: install s/w using global scope varibles
+  hosts: all
+  tasks:
+   - name: install uninstall s/w
+     apt:
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"  
